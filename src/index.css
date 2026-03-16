@@ -77,10 +77,7 @@ button {
 }
 
 .site-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   padding: 20px 32px;
   min-height: var(--site-footer-height);
   color: #b3b3b3;
@@ -181,6 +178,7 @@ button {
   display: flex;
   align-items: center;
   padding: 0 clamp(28px, 6vw, 96px);
+  position: relative;
 }
 
 .landing__content {
@@ -222,6 +220,18 @@ button {
   font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
   font-size: clamp(18px, 2.2vw, 28px);
   letter-spacing: 0.06em;
+}
+
+.landing__scroll {
+  position: absolute;
+  left: clamp(24px, 6vw, 96px);
+  top: clamp(24px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 16px;
+  letter-spacing: 0.08em;
 }
 
 .about-hero {
@@ -280,19 +290,6 @@ button {
   line-height: 1.4;
 }
 
-.about-hero__scroll {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-size: 24px;
-  letter-spacing: 0.08em;
-}
-
 .about-detail {
   min-height: 100vh;
   display: flex;
@@ -333,6 +330,22 @@ button {
 }
 
 @media (max-width: 767px) {
+  body,
+  a,
+  button {
+    cursor: auto;
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+
+  .landing__scroll {
+    left: 20px;
+    top: 20px;
+    font-size: 16px;
+  }
+
   .about-hero {
     padding: 0 24px;
   }
@@ -363,6 +376,33 @@ button {
 
   .about-detail__label {
     order: -1;
+  }
+
+  .work-panel {
+    padding: 0 20px 20px;
+  }
+
+  .work-card {
+    width: 100%;
+  }
+
+  .work-detail__cover {
+    height: auto;
+  }
+
+  .work-detail__cover img {
+    width: 100%;
+    height: auto;
+  }
+
+  .work-detail__marquee {
+    width: 100vw;
+  }
+
+  .work-detail__preview--marquee {
+    width: calc(100vw / 3);
+    max-width: calc(100vw / 3);
+    height: auto;
   }
 }
 
@@ -456,7 +496,7 @@ button {
   gap: 18px;
   color: #111;
   z-index: 3;
-  min-width: clamp(280px, 38vw, 520px);
+  width: 100%;
 }
 
 .work-card::before {
@@ -547,13 +587,13 @@ button {
 
 .work-detail__cover {
   width: 100%;
-  height: clamp(360px, 70vh, 680px);
+  height: auto;
 }
 
 .work-detail__cover img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 

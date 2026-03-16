@@ -65,6 +65,14 @@ export default function LandingPage() {
           The creator
         </RevealText>
       </div>
+      <div className="landing__scroll">
+        <RevealText as="span" forceVisible>
+          scroll
+        </RevealText>
+        <RevealText as="span" forceVisible>
+          ↓
+        </RevealText>
+      </div>
     </section>
   );
 }
