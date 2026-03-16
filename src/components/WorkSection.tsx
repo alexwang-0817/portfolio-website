@@ -36,6 +36,59 @@ export default function WorkSection({ onNavigate }: WorkSectionProps) {
   const metricsRef = useRef({ start: 0, length: 0, maxTranslate: 0 });
   const aspectRatioRef = useRef<number | null>(null);
 
+  const updateCardTypography = () => {
+    const section = sectionRef.current;
+    if (!section) {
+      return;
+    }
+
+    const cards = section.querySelectorAll('.work-card') as NodeListOf<HTMLElement>;
+    cards.forEach((card) => {
+      const link = card.querySelector('.work-card__link') as HTMLElement | null;
+      const title = card.querySelector('.work-card__title') as HTMLElement | null;
+      const arrow = card.querySelector('.work-card__arrow') as HTMLElement | null;
+      if (!link || !title || !arrow) {
+        return;
+      }
+
+      const cardStyle = getComputedStyle(card);
+      const baseTitle =
+        parseFloat(cardStyle.getPropertyValue('--card-title-size')) ||
+        parseFloat(getComputedStyle(title).fontSize);
+      const baseArrow =
+        parseFloat(cardStyle.getPropertyValue('--card-arrow-size')) ||
+        parseFloat(getComputedStyle(arrow).fontSize);
+
+      const minTitle = 10;
+      const minArrow = 10;
+      const minRatio = Math.min(1, Math.max(0.2, minTitle / baseTitle, minArrow / baseArrow));
+
+      const applySize = (ratio: number) => {
+        card.style.setProperty('--card-title-size', `${baseTitle * ratio}px`);
+        card.style.setProperty('--card-arrow-size', `${baseArrow * ratio}px`);
+      };
+
+      applySize(1);
+      if (link.scrollWidth <= link.clientWidth) {
+        return;
+      }
+
+      let low = minRatio;
+      let high = 1;
+      for (let i = 0; i < 10; i += 1) {
+        const mid = (low + high) / 2;
+        applySize(mid);
+        if (link.scrollWidth <= link.clientWidth) {
+          low = mid;
+        } else {
+          high = mid;
+        }
+      }
+
+      applySize(low);
+    });
+  };
+
   const updateLayoutSizing = () => {
     const section = sectionRef.current;
     const sticky = stickyRef.current;
@@ -123,10 +176,15 @@ export default function WorkSection({ onNavigate }: WorkSectionProps) {
     const onResize = () => {
       updateMetrics();
       updatePosition();
+      updateCardTypography();
     };
 
     updateMetrics();
     updatePosition();
+    updateCardTypography();
+    document.fonts?.ready.then(() => {
+      updateCardTypography();
+    });
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);

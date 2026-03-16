@@ -397,13 +397,15 @@ button {
   }
 
   .work-card {
-    width: 100%;
+    width: 40%;
     padding: 18px 20px;
     gap: 12px;
+    --card-title-size: clamp(18px, 18cqi, 32px);
+    --card-arrow-size: clamp(18px, 16cqi, 32px);
   }
 
   .work-card__link {
-    gap: 12px;
+    gap: clamp(8px, 3vw, 12px);
   }
 
   .work-card__index {
@@ -411,11 +413,11 @@ button {
   }
 
   .work-card__title {
-    font-size: clamp(22px, 8vw, 32px);
+    font-size: var(--card-title-size);
   }
 
   .work-card__arrow {
-    font-size: clamp(20px, 7vw, 28px);
+    font-size: var(--card-arrow-size);
   }
 
   .work-detail__cover {
@@ -522,13 +524,16 @@ button {
   bottom: 0;
   background: #fff;
   border-radius: 0 20px 0 0;
-  padding: 26px 32px;
+  padding: 12px 12px;
   display: flex;
   align-items: center;
   gap: 18px;
   color: #111;
   z-index: 3;
-  width: 100%;
+  width: 50%;
+  container-type: inline-size;
+  --card-title-size: clamp(20px, 20cqi, 48px);
+  --card-arrow-size: clamp(20px, 18cqi, 44px);
 }
 
 .work-card::before {
@@ -544,7 +549,10 @@ button {
 .work-card__link {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: clamp(8px, 1.5vw, 18px);
+  width: 100%;
+  min-width: 0;
+  flex-wrap: nowrap;
   text-decoration: none;
   color: #111;
   position: relative;
@@ -558,23 +566,35 @@ button {
   position: relative;
   z-index: 2;
   opacity: 1;
+  flex: 0 0 auto;
 }
 
 .work-card__title {
-  font-size: clamp(36px, 5vw, 68px);
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--card-title-size);
   font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
   letter-spacing: 0.08em;
   position: relative;
   z-index: 2;
   opacity: 1;
+  white-space: nowrap;
 }
 
 .work-card__arrow {
-  font-size: clamp(32px, 4.6vw, 64px);
+  font-size: var(--card-arrow-size);
   font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
   position: relative;
   z-index: 2;
   opacity: 1;
+  flex: 0 0 auto;
+}
+
+@supports not (container-type: inline-size) {
+  .work-card {
+    --card-title-size: clamp(28px, 4.5vw, 48px);
+    --card-arrow-size: clamp(24px, 4vw, 42px);
+  }
 }
 
 .work-detail {
