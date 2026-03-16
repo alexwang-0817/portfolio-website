@@ -224,8 +224,9 @@ button {
 
 .landing__scroll {
   position: absolute;
-  left: clamp(24px, 6vw, 96px);
-  top: clamp(24px, 6vw, 96px);
+  left: clamp(28px, 6vw, 96px);
+  bottom: 10vh;
+  top: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -327,6 +328,18 @@ button {
   .about-hero__profile {
     width: 32%;
   }
+
+  .work-card {
+    padding: 22px 24px;
+  }
+
+  .work-card__title {
+    font-size: clamp(28px, 4.5vw, 48px);
+  }
+
+  .work-card__arrow {
+    font-size: clamp(24px, 4vw, 42px);
+  }
 }
 
 @media (max-width: 767px) {
@@ -342,7 +355,8 @@ button {
 
   .landing__scroll {
     left: 20px;
-    top: 20px;
+    bottom: 10vh;
+    top: auto;
     font-size: 16px;
   }
 
@@ -384,6 +398,24 @@ button {
 
   .work-card {
     width: 100%;
+    padding: 18px 20px;
+    gap: 12px;
+  }
+
+  .work-card__link {
+    gap: 12px;
+  }
+
+  .work-card__index {
+    font-size: 11px;
+  }
+
+  .work-card__title {
+    font-size: clamp(22px, 8vw, 32px);
+  }
+
+  .work-card__arrow {
+    font-size: clamp(20px, 7vw, 28px);
   }
 
   .work-detail__cover {
