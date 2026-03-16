@@ -1,22 +1,25 @@
 import { useEffect, useRef } from 'react';
+import pawfinderWork from '../../img/pawfinder_work.png';
+import petproCover from '../../img/petpro.png';
+import scoutiesCover from '../../img/scouties.png';
 
 const WORK_ITEMS = [
   {
     id: '01',
     title: 'Scouties',
-    image: '/img/scouties.png',
+    image: scoutiesCover,
     slug: 'scouties',
   },
   {
     id: '02',
     title: 'Petpro',
-    image: '/img/petpro.png',
+    image: petproCover,
     slug: 'petpro',
   },
   {
     id: '03',
     title: 'PawFinder',
-    image: '/img/pawfinder_work.png',
+    image: pawfinderWork,
     slug: 'pawfinder',
   },
 ];
