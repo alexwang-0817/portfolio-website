@@ -791,7 +791,7 @@ button {
 
 .work-detail__marquee-track {
   display: flex;
-  gap: 0;
+  gap: 100px;
   width: max-content;
   will-change: transform;
 }
