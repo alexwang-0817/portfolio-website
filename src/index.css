@@ -398,14 +398,16 @@ button {
 
   .work-card {
     width: 40%;
-    padding: 18px 20px;
+    padding: 12px 14px;
     gap: 12px;
-    --card-title-size: clamp(18px, 18cqi, 32px);
-    --card-arrow-size: clamp(18px, 16cqi, 32px);
+    --card-title-size: clamp(12px, 14cqi, 28px);
+    --card-arrow-size: clamp(9px, 12cqi, 26px);
+    --card-title-min: 6;
+    --card-arrow-min: 6;
   }
 
   .work-card__link {
-    gap: clamp(8px, 3vw, 12px);
+    gap: clamp(6px, 2.5vw, 10px);
   }
 
   .work-card__index {
@@ -579,6 +581,10 @@ button {
   z-index: 2;
   opacity: 1;
   white-space: nowrap;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .work-card__arrow {

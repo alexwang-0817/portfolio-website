@@ -59,9 +59,11 @@ export default function WorkSection({ onNavigate }: WorkSectionProps) {
         parseFloat(cardStyle.getPropertyValue('--card-arrow-size')) ||
         parseFloat(getComputedStyle(arrow).fontSize);
 
-      const minTitle = 10;
-      const minArrow = 10;
-      const minRatio = Math.min(1, Math.max(0.2, minTitle / baseTitle, minArrow / baseArrow));
+      const minTitle =
+        parseFloat(cardStyle.getPropertyValue('--card-title-min')) || 8;
+      const minArrow =
+        parseFloat(cardStyle.getPropertyValue('--card-arrow-min')) || 8;
+      const minRatio = Math.min(1, Math.max(0.1, minTitle / baseTitle, minArrow / baseArrow));
 
       const applySize = (ratio: number) => {
         card.style.setProperty('--card-title-size', `${baseTitle * ratio}px`);
@@ -69,7 +71,10 @@ export default function WorkSection({ onNavigate }: WorkSectionProps) {
       };
 
       applySize(1);
-      if (link.scrollWidth <= link.clientWidth) {
+      if (title.clientWidth <= 0) {
+        return;
+      }
+      if (title.scrollWidth <= title.clientWidth) {
         return;
       }
 
@@ -78,7 +83,7 @@ export default function WorkSection({ onNavigate }: WorkSectionProps) {
       for (let i = 0; i < 10; i += 1) {
         const mid = (low + high) / 2;
         applySize(mid);
-        if (link.scrollWidth <= link.clientWidth) {
+        if (title.scrollWidth <= title.clientWidth) {
           low = mid;
         } else {
           high = mid;
